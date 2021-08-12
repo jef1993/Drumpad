@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Khula:wght@300;400&family=Russo+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Khula:wght@300;400;700&family=Russo+One&display=swap");
 
 $--color-primary: rgb(44, 40, 40);
 $--color-primary-light: rgb(83, 89, 90);
@@ -27,26 +27,55 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-image: linear-gradient(
-    90deg,
-    rgb(14, 160, 245),
-    rgb(207, 10, 132)
-  );
+  background-image: radial-gradient(
+      rgba(255, 193, 22, 0.7),
+      rgba(20, 20, 20, 0)
+    ),
+    url(img/background.jpg);
+  background-size: cover;
+  backdrop-filter: blur(10px) saturate(1.5);
   font-family: $--font-sub;
   color: #fff;
+  height: auto;
+}
+
+.header {
+  height: 12rem;
+  position: relative;
+
+  a {
+    .link {
+      opacity: 0.75;
+      width: 7rem;
+      position: absolute;
+      right: 4rem;
+      fill: #fff;
+      transition: all 0.1s;
+
+      &:hover {
+        width: 6.5rem;
+        opacity: 1;
+        fill: $--color-primary-dark;
+      }
+    }
+  }
 }
 
 .pad {
   width: 110rem;
   height: 65rem;
   background-color: $--color-primary;
-  margin: 10rem auto 5rem;
+  margin: 0 auto;
   border-radius: 15px;
   border-top: 15px outset $--color-primary-light-2;
   border-left: 15px outset $--color-primary-light;
   border-right: 25px inset $--color-primary-dark-2;
   border-bottom: 25px inset $--color-primary-dark;
   position: relative;
+  box-shadow: 3px 3px 8px 3px rgba($--color-primary-dark, 0.75);
+
+  @media screen and (max-width: 1200px) {
+  }
 }
 
 .main {
@@ -62,6 +91,9 @@ body {
 .controls {
   height: inherit;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   //   background-color: $--color-primary-dark-2;
 
   &__name {
@@ -72,6 +104,21 @@ body {
     margin: 0 6px;
     transform: scaleX(1.15);
     transform-origin: left;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    align-items: flex-end;
+    margin: 0 1.5rem 1.5rem 0;
+    flex: 0 0 50%;
+  }
+
+  &__btn {
+    width: 5rem;
+    height: 2rem;
+    background-color: $--color-lgd;
   }
 }
 
@@ -107,4 +154,12 @@ body {
       box-shadow: 0 0 6px 3px $--color-lgd;
     }
   }
+}
+
+.footer {
+  font-size: 2rem;
+  text-align: center;
+  vertical-align: center;
+  margin-top: 5rem;
+  font-weight: 400;
 }
