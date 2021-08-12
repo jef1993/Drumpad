@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Khula:wght@300;400&family=Russo+One&display=swap");
+
+$--color-primary: rgb(44, 40, 40);
+$--color-primary-light: rgb(83, 89, 90);
+$--color-primary-light-2: rgb(115, 121, 120);
+$--color-primary-dark: rgb(22, 22, 26);
+$--color-primary-dark-2: rgb(34, 35, 37);
+
+$--color-lgd: rgb(67, 255, 60);
+$--color-font: #fff;
+
+$--font-main: "Russo One", sans-serif;
+$--font-sub: "Khula", sans-serif;
+
+@mixin absCenter {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-image: linear-gradient(
+    90deg,
+    rgb(14, 160, 245),
+    rgb(207, 10, 132)
+  );
+  font-family: $--font-sub;
+  color: #fff;
+}
+
+.pad {
+  width: 110rem;
+  height: 65rem;
+  background-color: $--color-primary;
+  margin: 10rem auto 5rem;
+  border-radius: 15px;
+  border-top: 15px outset $--color-primary-light-2;
+  border-left: 15px outset $--color-primary-light;
+  border-right: 25px inset $--color-primary-dark-2;
+  border-bottom: 25px inset $--color-primary-dark;
+  position: relative;
+}
+
+.main {
+  @include absCenter;
+  //   background-color: $--color-primary-light;
+  height: 92%;
+  width: 92%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.controls {
+  height: inherit;
+  flex: 1;
+  //   background-color: $--color-primary-dark-2;
+
+  &__name {
+    font-family: $--font-main;
+    font-size: 3.2rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin: 0 6px;
+    transform: scaleX(1.15);
+    transform-origin: left;
+  }
+}
+
+.btns {
+  height: inherit;
+  flex: 0 0 73rem;
+  margin: auto 0;
+  //   background-color: lightcoral;
+  border: 2px solid $--color-primary-light;
+  border-radius: 8px;
+  //   box-shadow: 2px 2px 0 2px $--color-primary-dark;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(4, 16rem);
+    grid-template-rows: repeat(3, 16rem);
+    margin-right: 16px;
+  }
+
+  &__btn {
+    background-color: rgb(85, 20, 20);
+    margin: 8px;
+    border-radius: 5px;
+    transition: all 0.15s;
+    box-shadow: 2px 2px 0 4px $--color-primary-dark;
+
+    &:hover {
+      transform-origin: bottom right;
+      transform: scale(0.95);
+      box-shadow: 0 0 6px 3px $--color-lgd;
+    }
+  }
+}
