@@ -24,6 +24,15 @@ $--font-sub: "Khula", sans-serif;
   transform: scale(0.95);
 }
 
+@mixin monitor-style {
+  font-size: 2.5rem;
+  font-family: $--font-main;
+  color: rgba($--color-primary-dark, 0.9);
+  background-color: $--color-monitor;
+  border: 4px inset $--color-primary-dark-2;
+  cursor: pointer;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -35,4 +44,9 @@ body {
   font-family: $--font-sub;
   color: rgba($--color-font, 0.85);
   position: relative;
+}
+
+.keyPress {
+  @include btnClick;
+  box-shadow: 0 0 6px 3px $--color-lgd;
 }

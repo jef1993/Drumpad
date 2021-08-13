@@ -26,18 +26,24 @@
           <h1 class="controls__name">DrumPad</h1>
           <div class="controls__effects">
             <div class="controls__effect">
-              <audio class='controls__audio' src="audio/loop/loop_01.wav"></audio>
-              <div class="controls__big-btn">big btn</div>
+              <audio id='loop' class='controls__audio' src='audio/loop/loop_01.wav' loop></audio>
+              <div class="controls__big-btn">
+                <div class="controls__type">loop</div>
+                <div class="controls__key">1</div>
+              </div>
+              <label for="loop__volume">Volume</label>
+              <input type="range" id='loop__volume' class="controls__volume" min="0" max="10">
               <input type="number" class="controls__spinner"></input>
-              <input type="range" id='loop' class="controls__volume" min="0" max="10">
-              <label for="loop">Volume</label>
             </div>
             <div class="controls__effect">
-              <audio class='controls__audio' src="audio/loop/loop_01.wav"></audio>
-              <div class="controls__big-btn">big btn</div>
+              <audio id='rise' class='controls__audio' src='audio/rise/rise_01.wav' ></audio>
+              <div class="controls__big-btn">
+                <div class="controls__type">loop</div>
+                <div class="controls__key">2</div>
+              </div>
               <input type="number" class="controls__spinner"></input>
-              <input type="range" id='loop' class="controls__volume" min="0" max="10">
-              <label for="loop">Volume</label>
+              <input type="range" id='rise__volume' class="controls__volume" min="0" max="10">
+              <label for="riser__volume">Volume</label>
             </div>
           </div>
           <div class="controls__container">
