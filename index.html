@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <script defer src="app.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <script type='module' defer src="app.js"></script>
     <title>DrumPad</title>
   </head>
   <body>
@@ -23,42 +23,87 @@
       <div class="main">
         <div class="controls">
           <h1 class="controls__name">DrumPad</h1>
+          <div class="controls__effects">
+            <div class="controls__effect">
+              <audio class='controls__audio' src="audio/loop/loop_01.wav"></audio>
+              <div class="controls__big-btn">big btn</div>
+              <input type="number" class="controls__spinner"></input>
+              <input type="range" id='loop' class="controls__volume" min="0" max="10">
+              <label for="loop">Volume</label>
+            </div>
+            <div class="controls__effect">
+              <audio class='controls__audio' src="audio/loop/loop_01.wav"></audio>
+              <div class="controls__big-btn">big btn</div>
+              <input type="number" class="controls__spinner"></input>
+              <input type="range" id='loop' class="controls__volume" min="0" max="10">
+              <label for="loop">Volume</label>
+            </div>
+          </div>
           <div class="controls__container">
-            <input type="number" value="1" min='1' max='' class="controls__btn controls__btn--1"></input>
-            <input type="number" value="1" min='1' max='' class="controls__btn controls__btn--2"></input>
-            <input type="number" value="1" min='1' max='' class="controls__btn controls__btn--3"></input>
-            <input type="number" value="1" min='1' max='' class="controls__btn controls__btn--4"></input>
-            <input type="number" value="1" min='1' max='' class="controls__btn controls__btn--5"></input>
-            <input type="number" value="1" min='1' max='' class="controls__btn controls__btn--6"></input>
-            <input type="number" value="1" min='1' max='' class="controls__btn controls__btn--7"></input>
-            <input type="number" value="1" min='1' max='' class="controls__btn controls__btn--8"></input>
-            <input type="number" value="1" min='1' max='' class="controls__btn controls__btn--9"></input>
-            <input type="number" value="1" min='1' max='' class="controls__btn controls__btn--10"></input>
-            <input type="number" value="1" min='1' max='' class="controls__btn controls__btn--11"></input>
-            <input type="number" value="1" min='1' max='' class="controls__btn controls__btn--12"></input>
+            <input type="number" class="controls__btn controls__btn--1"></input>
+            <input type="number" class="controls__btn controls__btn--2"></input>
+            <input type="number" class="controls__btn controls__btn--3"></input>
+            <input type="number" class="controls__btn controls__btn--4"></input>
+            <input type="number" class="controls__btn controls__btn--5"></input>
+            <input type="number" class="controls__btn controls__btn--6"></input>
+            <input type="number" class="controls__btn controls__btn--7"></input>
+            <input type="number" class="controls__btn controls__btn--8"></input>
+            <input type="number" class="controls__btn controls__btn--9"></input>
+            <input type="number" class="controls__btn controls__btn--10"></input>
+            <input type="number" class="controls__btn controls__btn--11"></input>
+            <input type="number" class="controls__btn controls__btn--12"></input>
           </div>
         </div>
         <div class="btns">
           <div class="btns__container">
             <div class="btns__btn btns__btn--1">
-              q
-              <audio
-                src="audio/loop/loop_01.wav"
-                preload="auto"
-                class="audio-1"
-              ></audio>
+              <div class="btns__type">perc</div>
+              <div class="btns__key">q</div>
             </div>
-            <div class="btns__btn btns__btn--2">w</div>
-            <div class="btns__btn btns__btn--3">e</div>
-            <div class="btns__btn btns__btn--4">r</div>
-            <div class="btns__btn btns__btn--5">a</div>
-            <div class="btns__btn btns__btn--6">s</div>
-            <div class="btns__btn btns__btn--7">d</div>
-            <div class="btns__btn btns__btn--8">f</div>
-            <div class="btns__btn btns__btn--9">z</div>
-            <div class="btns__btn btns__btn--10">x</div>
-            <div class="btns__btn btns__btn--11">c</div>
-            <div class="btns__btn btns__btn--12">v</div>
+            <div class="btns__btn btns__btn--2">
+              <div class="btns__type"></div>
+              <div class="btns__key"></div>
+            </div>
+            <div class="btns__btn btns__btn--3">
+              <div class="btns__type"></div>
+              <div class="btns__key"></div>
+            </div>
+            <div class="btns__btn btns__btn--4">
+              <div class="btns__type"></div>
+              <div class="btns__key"></div>
+            </div>
+            <div class="btns__btn btns__btn--5">
+              <div class="btns__type"></div>
+              <div class="btns__key"></div>
+            </div>
+            <div class="btns__btn btns__btn--6">
+              <div class="btns__type"></div>
+              <div class="btns__key"></div>
+            </div>
+            <div class="btns__btn btns__btn--7">
+              <div class="btns__type"></div>
+              <div class="btns__key"></div>
+            </div>
+            <div class="btns__btn btns__btn--8">
+              <div class="btns__type"></div>
+              <div class="btns__key"></div>
+            </div>
+            <div class="btns__btn btns__btn--9">
+              <div class="btns__type"></div>
+              <div class="btns__key"></div>
+            </div>
+            <div class="btns__btn btns__btn--10">
+              <div class="btns__type"></div>
+              <div class="btns__key"></div>
+            </div>
+            <div class="btns__btn btns__btn--11">
+              <div class="btns__type"></div>
+              <div class="btns__key"></div>
+            </div>
+            <div class="btns__btn btns__btn--12">
+              <div class="btns__type"></div>
+              <div class="btns__key"></div>
+            </div>
           </div>
         </div>
       </div>

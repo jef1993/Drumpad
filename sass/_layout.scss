@@ -1,0 +1,64 @@
+.background {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-image: radial-gradient(
+      rgba(255, 193, 22, 0.7),
+      rgba(20, 20, 20, 0.7)
+    ),
+    url(../img/background.jpg);
+  background-size: cover;
+  filter: saturate(1.5);
+}
+
+.header {
+  height: 12rem;
+  position: relative;
+
+  a {
+    .link {
+      opacity: 0.75;
+      width: 7rem;
+      position: absolute;
+      right: 4rem;
+      fill: #fff;
+      transition: all 0.1s;
+
+      &:hover {
+        width: 6.5rem;
+        opacity: 1;
+        fill: $--color-primary-dark;
+      }
+    }
+  }
+}
+
+.pad {
+  width: 110rem;
+  height: 63rem;
+  background-color: $--color-primary;
+  border-radius: 15px;
+  border-top: 15px outset $--color-primary-light-2;
+  border-left: 15px outset $--color-primary-light;
+  border-right: 25px inset $--color-primary-dark-2;
+  border-bottom: 25px inset $--color-primary-dark;
+  position: absolute;
+  left: 50vw;
+  transform: translateX(-50%);
+  box-shadow: 3px 3px 8px 3px rgba($--color-primary-dark, 0.75);
+
+  @media screen and (max-width: 1200px) {
+    transform: translateX(-50%) scale(0.75);
+  }
+}
+
+.main {
+  @include absCenter;
+  height: 92%;
+  width: 92%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

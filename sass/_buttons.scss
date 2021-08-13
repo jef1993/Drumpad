@@ -1,0 +1,60 @@
+.btns {
+  height: inherit;
+  flex: 0 0 73rem;
+  border: 2px solid $--color-primary-light;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(4, 16rem);
+    grid-template-rows: repeat(3, 16rem);
+    margin-right: 16px;
+  }
+
+  &__btn {
+    background-color: $--color-primary-dark-2;
+    margin: 8px;
+    border-radius: 5px;
+    transition: all 0.1s;
+    box-shadow: 2px 2px 0 4px $--color-primary-dark;
+    font-family: $--font-main;
+    cursor: pointer;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px 10px;
+
+    &:active {
+      @include btnClick;
+      box-shadow: 0 0 6px 3px $--color-lgd;
+    }
+  }
+
+  &__type {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    color: $--color-primary-light;
+  }
+
+  &__key {
+    font-size: 6rem;
+    align-self: flex-end;
+  }
+}
+
+.footer {
+  font-size: 2rem;
+  text-align: center;
+  vertical-align: center;
+  margin-top: 5rem;
+  font-weight: 400;
+}
+
+.keyPress {
+  @include btnClick;
+  box-shadow: 0 0 6px 3px $--color-lgd;
+}

@@ -1,0 +1,124 @@
+.controls {
+  height: inherit;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  //   background-color: $--color-primary-dark-2;
+
+  &__name {
+    font-family: $--font-main;
+    font-size: 3.2rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin: 0 6px;
+    transform: scaleX(1.15);
+    transform-origin: left;
+  }
+
+  &__effects {
+    flex: 3;
+    // background-color: $--color-primary-light;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  &__effect {
+    flex: 0 0 45%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__audio {
+  }
+
+  &__big-btn {
+    background-color: $--color-primary-dark-2;
+    height: 10rem;
+    width: 10rem;
+    border-radius: 5px;
+    transition: all 0.15s;
+    box-shadow: 2px 2px 0 3px $--color-primary-dark;
+    font-family: $--font-main;
+    color: $--color-primary-light;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+
+    &:active {
+      @include btnClick;
+      box-shadow: 0 0 3px 2px $--color-lgd;
+    }
+  }
+
+  &__spinner {
+    width: 5rem;
+  }
+
+  &__volume {
+    transform: rotate(-90deg);
+    -webkit-appearance: none;
+    background: transparent;
+    width: 10rem;
+
+    &:hover {
+      outline: none;
+
+      &::-webkit-slider-runnable-track {
+        background: rgb(146, 4, 4);
+      }
+    }
+    &::-webkit-slider-runnable-track {
+      height: 1.2rem;
+      cursor: pointer;
+      background: $--color-primary-dark-2;
+      border-radius: 32px;
+      border: 3px inset $--color-primary-dark-2;
+      transition: all 0.15s;
+    }
+    &::-webkit-slider-thumb {
+      border: 1px solid $--color-primary-dark;
+      height: 2.5rem;
+      width: 2.5rem;
+      border-radius: 31px;
+      background: radial-gradient(
+        $--color-primary-light-2 20%,
+        $--color-primary-dark 90%
+      );
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -1rem;
+    }
+  }
+
+  & label {
+    text-transform: uppercase;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    align-items: center;
+    margin-right: 1.5rem;
+    flex: 0 0 40%;
+  }
+
+  &__btn {
+    width: 5rem;
+    height: 3rem;
+    transition: all 0.1s;
+    font-size: 2.5rem;
+    border: none;
+    background-color: $--color-monitor;
+    border: 4px inset $--color-primary-dark-2;
+    cursor: pointer;
+
+    &:focus {
+      height: 3rem;
+      font-size: 2.5rem;
+    }
+  }
+}
