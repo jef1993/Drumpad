@@ -197,7 +197,7 @@ body {
   background-color: #242222;
   margin: 8px;
   border-radius: 5px;
-  transition: all 0.1s;
+  transition: all 75ms;
   box-shadow: 2px 2px 0 4px #16161a;
   font-family: "Russo One", sans-serif;
   cursor: pointer;

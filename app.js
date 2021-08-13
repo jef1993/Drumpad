@@ -7,6 +7,7 @@ const btnKey = document.querySelectorAll(".btns__key");
 const playAudio = (url) => {
   const audio = document.createElement("audio");
   audio.src = url;
+  audio.preload = "auto";
   document.querySelector(".audio-area").appendChild(audio);
   audio.play();
 
@@ -16,20 +17,24 @@ const playAudio = (url) => {
 };
 
 let currentFile = 1;
-let layout = [
-  ["perc", 1, 15, "q"],
-  ["clap", 1, 12, "w"],
-  ["crash", 1, 11, "e"],
-  ["ride", 1, 3, "r"],
-  ["hihat-open", 1, 10, "a"],
-  ["clap", 1, 12, "s"],
-  ["tom-high", 1, 2, "d"],
-  ["tom-mid", 1, 2, "f"],
-  ["hihat-closed", 1, 15, "z"],
-  ["snare", 1, 10, "x"],
-  ["kick", 1, 15, "c"],
-  ["tom-low", 1, 2, "v"],
+
+let instruments = [
+  ["crash", 1, 11],
+  ["clap", 1, 12],
+  ["perc", 1, 15],
+  ["ride", 1, 3],
+  ["hihat-closed", 1, 15],
+  ["clap", 1, 12],
+  ["tom-high", 1, 2],
+  ["tom-mid", 1, 2],
+  ["hihat-open", 1, 10],
+  ["snare", 1, 10],
+  ["kick", 1, 15],
+  ["tom-low", 1, 2],
 ];
+
+let keyMap = ["q", "w", "e", "r", "a", "s", "d", "f", "z", "x", "c", "v"];
+let layout = instruments.map((el, i) => el.concat(keyMap[i]));
 
 const playAudioTarget = function (i) {
   const audioNumber = layout[i][1].toString().padStart(2, "0");
@@ -41,17 +46,25 @@ controlsBtn.forEach((el, index) => {
   el.value = 1;
   el.min = 1;
   el.max = layout[index][2];
-  el.addEventListener("change", (e) => {
-    layout[index][1] = e.target.value;
-    playAudioTarget(index);
-  });
+  el.addEventListener(
+    "change",
+    (e) => {
+      layout[index][1] = e.target.value;
+      playAudioTarget(index);
+    },
+    true
+  );
 });
 
 // Play selected audio on click
 btn.forEach((el, index) => {
-  el.addEventListener("click", () => {
-    playAudioTarget(index);
-  });
+  el.addEventListener(
+    "click",
+    () => {
+      playAudioTarget(index);
+    },
+    true
+  );
 
   //Prevent double click selecting text
   el.addEventListener("mousedown", (e) => {
@@ -70,18 +83,26 @@ btnKey.forEach((el, index) => {
 
 // Play selected audio on keydown
 
-document.addEventListener("keydown", (e) => {
-  const targetIndex = layout.findIndex((el) => el[3] === e.key);
+document.addEventListener(
+  "keydown",
+  (e) => {
+    const targetIndex = layout.findIndex((el) => el[3] === e.key.toLowerCase());
 
-  if (targetIndex !== -1) {
-    playAudioTarget(targetIndex);
-    btn[targetIndex].classList.add("keyPress");
-  }
-});
+    if (targetIndex !== -1 && !e.repeat) {
+      playAudioTarget(targetIndex);
+      btn[targetIndex].classList.add("keyPress");
+    }
+  },
+  true
+);
 
-document.addEventListener("keyup", (e) => {
-  const targetIndex = layout.findIndex((el) => el[3] === e.key);
-  if (targetIndex !== -1) {
-    btn[targetIndex].classList.remove("keyPress");
-  }
-});
+document.addEventListener(
+  "keyup",
+  (e) => {
+    const targetIndex = layout.findIndex((el) => el[3] === e.key.toLowerCase());
+    if (targetIndex !== -1) {
+      btn[targetIndex].classList.remove("keyPress");
+    }
+  },
+  true
+);
