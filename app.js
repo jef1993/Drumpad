@@ -8,6 +8,7 @@ const controlsAudio = document.querySelectorAll(".controls__audio");
 const controlsSpinner = document.querySelectorAll(".controls__spinner");
 const controlsType = document.querySelectorAll(".controls__type");
 const controlsKey = document.querySelectorAll(".controls__key");
+const controlsVolume = document.querySelectorAll(".controls__volume");
 
 let instruments = [
   ["crash", 1, 11],
@@ -43,14 +44,13 @@ let keyMap = [
   "a",
 ];
 let layout = instruments.map((el, i) => el.concat(keyMap[i]));
-// const targetAudio = document.querySelector(`[src='${url}']`);
 
 const playAudio = (url, overlap = true) => {
   if (overlap) {
     const audio = document.createElement("audio");
     audio.src = url;
     audio.preload = "auto";
-    document.querySelector(".audio-area").appendChild(audio);
+    document.querySelector(".channel").appendChild(audio);
     audio.play();
     audio.onended = function () {
       this.parentNode.removeChild(this);
@@ -65,6 +65,13 @@ const playAudio = (url, overlap = true) => {
     }
   }
 };
+
+// Detect and change effects volume
+controlsVolume.forEach((el, i) => {
+  el.addEventListener("change", (e) => {
+    e.target.parentNode.childNodes[1].volume = e.target.value / e.target.max;
+  });
+});
 
 const playAudioTarget = function (i) {
   const audioNumber = layout[i][1].toString().padStart(2, "0");
@@ -92,7 +99,6 @@ controlsBtn.forEach((el, index) => {
 // Detect effects selection
 controlsSpinner.forEach((el, index) => {
   const controlsAudioIndex = layout.length - 2 + index;
-
   el.value = 1;
   el.min = 1;
   el.max = layout[controlsAudioIndex][2];
@@ -101,7 +107,6 @@ controlsSpinner.forEach((el, index) => {
     (e) => {
       const inputValue = e.target.value;
       layout[controlsAudioIndex][1] = inputValue;
-      // if (inputValue >= el.min && inputValue <= el.max)
       el.parentNode.childNodes[1].src = `audio/${
         layout[controlsAudioIndex][0]
       }/${layout[controlsAudioIndex][0]}_${inputValue
@@ -132,60 +137,50 @@ const playOnClick = function (group, initalIndex = 0) {
 playOnClick(btn);
 playOnClick(controlsBigBtn, layout.length - 2);
 
-// Label instruments' type on button
-btnType.forEach((el, index) => {
-  el.innerHTML = layout[index][0];
-});
+// Label instruments'buttons
+const labelBtns = (types, keys, initalIndex = 0) => {
+  types.forEach((el, index) => {
+    el.innerHTML = layout[initalIndex + index][0];
+  });
 
-controlsType.forEach((el, index) => {
-  el.innerHTML = layout[layout.length - 2 + index][0];
-});
+  keys.forEach((el, index) => {
+    el.innerHTML = layout[initalIndex + index][3];
+  });
+};
 
-// Label input key on button
-btnKey.forEach((el, index) => {
-  el.innerHTML = layout[index][3];
-});
+labelBtns(btnType, btnKey);
+labelBtns(controlsType, controlsKey, layout.length - 2);
 
-controlsKey.forEach((el, index) => {
-  el.innerHTML = layout[layout.length - 2 + index][3];
-});
+// Play selected audio on keydown/keyup
 
-// Play selected audio on keydown
+const btnOnPress = (keyEvent) => {
+  document.addEventListener(
+    keyEvent,
+    (e) => {
+      const layoutIndex = layout.findIndex(
+        (el) => el[3] === e.key.toLowerCase()
+      );
 
-document.addEventListener(
-  "keydown",
-  (e) => {
-    const layoutIndex = layout.findIndex((el) => el[3] === e.key.toLowerCase());
+      if (layoutIndex !== -1 && !e.repeat) {
+        if (keyEvent === "keydown") playAudioTarget(layoutIndex);
 
-    if (layoutIndex !== -1 && !e.repeat) {
-      playAudioTarget(layoutIndex);
-
-      if (layoutIndex < layout.length - 2) {
-        btn[layoutIndex].classList.add("keyPress");
-      } else {
-        controlsBigBtn[layoutIndex - layout.length + 2].classList.add(
-          "controlsPress"
-        );
+        if (layoutIndex < layout.length - 2) {
+          const btnClasses = btn[layoutIndex].classList;
+          keyEvent === "keydown"
+            ? btnClasses.add("keyPress")
+            : btnClasses.remove("keyPress");
+        } else {
+          const ctrlClasses =
+            controlsBigBtn[layoutIndex - layout.length + 2].classList;
+          keyEvent === "keydown"
+            ? ctrlClasses.add("controlsPress")
+            : ctrlClasses.remove("controlsPress");
+        }
       }
-    }
-  },
-  true
-);
+    },
+    true
+  );
+};
 
-document.addEventListener(
-  "keyup",
-  (e) => {
-    const layoutIndex = layout.findIndex((el) => el[3] === e.key.toLowerCase());
-
-    if (layoutIndex !== -1) {
-      if (layoutIndex < layout.length - 2) {
-        btn[layoutIndex].classList.remove("keyPress");
-      } else {
-        controlsBigBtn[layoutIndex - layout.length + 2].classList.remove(
-          "controlsPress"
-        );
-      }
-    }
-  },
-  true
-);
+btnOnPress("keydown");
+btnOnPress("keyup");
