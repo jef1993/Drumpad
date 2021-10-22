@@ -24,7 +24,7 @@ let instruments = [
   ["kick", 1, 15],
   ["tom-low", 1, 2],
   ["loop", 1, 15],
-  ["riser", 1, 10],
+  ["rise", 1, 10],
 ];
 
 let keyMap = [
